@@ -1,0 +1,35 @@
+name: Deploy Node.js App to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # Or the branch you want to deploy from
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16' # Or your desired Node.js version
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Build Node.js app (if applicable)
+      # If your Node.js app needs a build step (e.g., using React, Vue, Angular, or a static site generator)
+      # uncomment and adjust the following lines. For a purely server-side Node.js app, this might not be needed
+      # but if you're deploying a *frontend* built with Node.js tools, it's crucial.
+      run: npm run build
+
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./dist # Or the directory where your build output resides (e.g., ./build, ./dist)
+        # cname: example.com # Uncomment and set if you're using a custom domain

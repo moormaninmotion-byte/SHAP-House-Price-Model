@@ -1,4 +1,4 @@
-name: Deploy Node.js App to GitHub Pages
+name: Deploy Vite React TS App to GitHub Pages
 
 on:
   push:
@@ -16,20 +16,18 @@ jobs:
     - name: Set up Node.js
       uses: actions/setup-node@v2
       with:
-        node-version: '16' # Or your desired Node.js version
+        node-version: '18' # Recommended for Vite/React projects, adjust if needed
+        cache: 'npm' # Caches npm dependencies to speed up builds
 
     - name: Install dependencies
       run: npm install
 
-    - name: Build Node.js app (if applicable)
-      # If your Node.js app needs a build step (e.g., using React, Vue, Angular, or a static site generator)
-      # uncomment and adjust the following lines. For a purely server-side Node.js app, this might not be needed
-      # but if you're deploying a *frontend* built with Node.js tools, it's crucial.
+    - name: Build Vite React TS app
       run: npm run build
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./dist # Or the directory where your build output resides (e.g., ./build, ./dist)
+        publish_dir: ./dist # Vite typically outputs to the 'dist' directory
         # cname: example.com # Uncomment and set if you're using a custom domain

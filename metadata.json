@@ -1,0 +1,5 @@
+{
+  "name": "Interactive SHAP Explainer",
+  "description": "An interactive web application to demonstrate SHAP (SHapley Additive exPlanations) for machine learning model predictions. Adjust house features and see how they contribute to the final price prediction, with AI-powered explanations.",
+  "requestFramePermissions": []
+}
